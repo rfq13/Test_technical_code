@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome App</title>
+</head>
+<body>
+    <input type="number" min="0" name="input" id="input" placeholder="masukkan angka">
+    <br>
+    <br>
+    <button onclick="generateSegitiga()">Generate Segitiga</button>
+    <button onclick="generateGanjil()">Generate Ganjil</button>
+    <button onclick="generatePrima()">Generate Prima</button>
+    <br>
+    <br>
+    <div id="result"></div>
+
+    <script>
+        function requestAjax(input, url, method = 'POST'){
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open(method, url);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        resolve(response);
+                    } else {
+                        reject('Request failed.  Returned status of ' + xhr.status);
+                    }
+                };
+                xhr.send(JSON.stringify({input: input}));
+            });
+        }
+
+        function generateSegitiga(){
+            const input = document.getElementById('input').value;
+            requestAjax(input, `/generate-segitiga`)
+                .then(response => {
+                    const resultComp = document.getElementById('result');
+                    resultComp.innerHTML = response.result; 
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
+        function generateGanjil(){
+            const input = document.getElementById('input').value;
+            requestAjax(input, `/generate-bilangan-ganjil`)
+                .then(response => {
+                    const resultComp = document.getElementById('result');
+                    resultComp.innerHTML = response.result; 
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
+        function generatePrima(){
+            const input = document.getElementById('input').value;
+            requestAjax(input, `/generate-bilangan-prima`)
+                .then(response => {
+                    const resultComp = document.getElementById('result');
+                    resultComp.innerHTML = response.result; 
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
+    </script>
+</body>
+</html>

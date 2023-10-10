@@ -1,0 +1,26 @@
+{
+  "name": "be-awesome",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rfq13/Test_technical_code.git"
+  },
+  "author": "rfq13",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rfq13/Test_technical_code/issues"
+  },
+  "homepage": "https://github.com/rfq13/Test_technical_code#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2"
+  }
+}
